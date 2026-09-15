@@ -1,42 +1,26 @@
 # Fluxo interno
 
-## Controle de fidelidade
+## Regra de execução
 
-O pipeline deve copiar a caligrafia, não apenas produzir uma escrita manuscrita genérica. O perfil registra várias ocorrências de cada letra e preserva suas diferenças. O modelo não deve escolher uma única forma perfeita e repeti-la.
+Não explicar a Skill durante o uso. Executar o fluxo e fazer somente perguntas necessárias.
 
-A avaliação considera formas específicas, proporções, deformações, inclinação, pressão, espessura, textura, espaçamento, alinhamento, conexões, ritmo e imperfeições. Não embelezar nem uniformizar.
+## Etapas obrigatórias
 
-## Pipeline
+1. Perguntar o modo: Imagem → Imagem ou Texto → Imagem.
+2. Receber o conteúdo conforme o modo.
+3. Exigir a imagem do caderno, ficha, formulário ou folha que será usada.
+4. Analisar formato, linhas, margens, campos, perspectiva, textura e áreas disponíveis.
+5. Perguntar como o usuário quer que o texto apareça na ficha ou caderno.
+6. Receber o PDF de referências da caligrafia.
+7. Extrair páginas visuais úteis.
+8. Criar `WritingStyleProfile` com várias ocorrências das letras e suas variantes.
+9. Analisar a caligrafia sem transformá-la em fonte.
+10. No modo Imagem → Imagem, transcrever e pedir revisão.
+11. Preparar referências, conteúdo e instruções de posicionamento.
+12. Pedir confirmação antes de gerar.
+13. Gerar usando Nano Banana 2 Pro quando disponível.
+14. Perguntar se o resultado está bom, se parece com a letra da pessoa e se está corretamente posicionado.
+15. Se não estiver bom, aplicar feedback, regenerar apenas a página e perguntar novamente.
+16. Organizar e exportar quando possível.
 
-1. Perguntar o modo.
-2. Receber imagens originais ou texto.
-3. Receber PDF.
-4. Renderizar e selecionar páginas visuais úteis.
-5. Criar `WritingStyleProfile` com múltiplas variantes.
-6. Analisar papel e instrumento.
-7. Transcrever no modo Imagem → Imagem, usando `[trecho ilegível]`.
-8. Mostrar transcrição, aceitar alterações e aguardar confirmação.
-9. Preparar todas as referências simultaneamente.
-10. Gerar com Nano Banana 2 Pro quando disponível.
-11. Mostrar original e resultado.
-12. Perguntar se está bom e se realmente parece com a letra da pessoa.
-
-## Loop de avaliação
-
-Se aprovado, marcar a página como aprovada. Se recusado, não repetir a geração sem mudanças. Perguntar ou interpretar o feedback, por exemplo: “parece fonte”, “está perfeita demais”, “não copiou o formato do meu a”, “o traço está grosso” ou “o espaçamento está errado”.
-
-Depois:
-
-1. Transformar o feedback em instruções concretas.
-2. Reforçar as imagens de referência relevantes.
-3. Exigir cópia visual das letras e não uma aproximação genérica.
-4. Solicitar variação natural e menor perfeição.
-5. Regenerar somente a página recusada.
-6. Salvar como nova versão.
-7. Perguntar novamente se está boa.
-
-Repetir até aprovação ou até o usuário pedir para parar.
-
-## Organização
-
-Processar páginas separadamente, permitir comparação lado a lado, sobreposição, slider e zoom quando possível, manter histórico e exportar um PDF com uma imagem por página, sem distorção ou cortes acidentais.
+A imagem do caderno ou ficha é obrigatória e controla o suporte físico. A imagem original controla o conteúdo e a estrutura quando existir. O PDF controla a caligrafia. As instruções do usuário controlam a posição e o modo de apresentação do texto.
