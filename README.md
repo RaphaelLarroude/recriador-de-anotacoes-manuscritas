@@ -1,64 +1,53 @@
 # Recriador de Anotações Manuscritas
 
-Skill para o ChatGPT recriar anotações manuscritas preservando conteúdo, layout e características individuais da caligrafia a partir de imagens de referência.
+Skill para o ChatGPT recriar anotações manuscritas preservando conteúdo, layout e características individuais da caligrafia.
 
-## O que faz
+## Objetivo
 
-A Skill separa conteúdo e estilo visual. O conteúdo vem da imagem original ou do texto fornecido; a caligrafia vem exclusivamente das imagens de referência extraídas de um PDF. O objetivo é reproduzir a escrita da mesma pessoa, incluindo variações e imperfeições humanas, e não aplicar uma fonte manuscrita genérica.
+O resultado deve parecer escrito pela mesma pessoa das imagens de referência. A Skill não aplica uma fonte manuscrita e não aceita uma escrita apenas genericamente parecida. Ela deve copiar formas concretas das letras, proporções, deformações, inclinação, pressão, textura, espessura, espaçamento e variantes observadas no PDF.
 
-## Quando utilizar
-
-Use quando quiser reconstruir uma ou mais páginas manuscritas com aparência visual semelhante à original e à caligrafia fornecida como referência.
+A escrita não deve ficar bonita demais, limpa demais, uniforme demais ou perfeita demais. A referência do usuário tem prioridade sobre qualquer padrão de caligrafia ideal.
 
 ## Arquivos necessários
 
-- **Imagem → Imagem:** uma ou mais imagens das anotações originais e um PDF com exemplos da escrita.
-- **Texto → Imagem:** o texto a ser escrito e um PDF com exemplos da escrita.
+- Imagem → Imagem: uma ou mais imagens originais e um PDF com exemplos da caligrafia.
+- Texto → Imagem: o texto e um PDF com exemplos da caligrafia.
 
-O PDF é tratado como referência visual de caligrafia, não como simples texto.
+O PDF é analisado visualmente como biblioteca de referências, não apenas por OCR.
 
-## Modos
+## Fluxo
 
-### Imagem → Imagem
+1. Escolha do modo.
+2. Recebimento do conteúdo.
+3. Recebimento do PDF.
+4. Extração visual das páginas úteis.
+5. Criação do `WritingStyleProfile` com várias ocorrências e variantes das letras.
+6. Análise do papel, instrumento, traço e layout.
+7. Transcrição no modo Imagem → Imagem.
+8. Revisão, alterações e confirmação obrigatória.
+9. Geração com Nano Banana 2 Pro quando disponível.
+10. Apresentação da imagem original e recriada.
+11. Pergunta obrigatória: “O resultado está bom? A escrita está realmente parecida com a letra da pessoa das referências?”
+12. Se o usuário reprovar, a Skill registra o motivo, reforça a cópia da caligrafia, reduz uniformidade e regenera somente a página recusada.
+13. O ciclo continua até aprovação ou solicitação para parar.
+14. Organização, comparação, versões e exportação.
 
-A imagem original define conteúdo e layout. A Skill extrai e analisa as páginas do PDF, cria um perfil estruturado da escrita, transcreve a anotação, mostra a transcrição para revisão e só gera depois da confirmação. Cada imagem original produz uma página separada.
+## Avaliação e regeneração
 
-### Texto → Imagem
-
-O texto fornecido define o conteúdo. Depois do PDF, o usuário escolhe o layout: uma ou várias páginas, blocos separados, quebras preservadas ou distribuição automática. A caligrafia e a aparência da folha vêm das referências visuais.
-
-## Fluxo completo
-
-1. Perguntar o modo escolhido.
-2. Receber o conteúdo conforme o modo.
-3. Receber o PDF de referência.
-4. Renderizar páginas úteis do PDF como imagens quando possível.
-5. Analisar letras, números, símbolos, espaçamento, inclinação, pressão, textura, papel e instrumento.
-6. Preservar variações humanas; nunca criar uma fonte uniforme.
-7. No modo Imagem → Imagem, transcrever e usar `[trecho ilegível]` sem inventar.
-8. Mostrar a transcrição e pedir alterações.
-9. Pedir confirmação antes da geração.
-10. Gerar com Nano Banana 2 Pro, usando simultaneamente layout, referências e perfil.
-11. Mostrar original e recriada por página.
-12. Permitir comparação, regeneração independente e organização da ordem.
-13. Exportar um PDF final, se o ambiente permitir.
+Após cada geração, o usuário pode aprovar ou informar que a letra não parece correta, está perfeita demais, parece uma fonte, precisa de mais irregularidade ou tem problemas no layout. A Skill não deve defender uma geração inadequada nem repetir o mesmo prompt sem mudanças. Cada regeneração precisa incorporar o feedback e preservar as versões anteriores quando possível.
 
 ## Limitações
 
-A geração pode apresentar erros de leitura, símbolos ou posicionamento. Conteúdo ilegível não deve ser adivinhado. O processamento depende das ferramentas disponíveis para ler PDFs, analisar imagens, gerar imagens e criar PDFs. A Skill deve informar falhas claramente e manter versões durante a sessão quando houver armazenamento.
-
-## Privacidade
-
-As imagens devem ser usadas somente para a tarefa. Não solicitar publicação ou compartilhamento desnecessário.
+A geração de imagens pode falhar ao reproduzir texto, fórmulas ou pequenas características da caligrafia. O sistema deve informar limitações e nunca inventar conteúdo ilegível. O uso do Nano Banana 2 Pro depende de sua disponibilidade no ambiente.
 
 ## Instalação
 
-Adicione este repositório ao ambiente de Skills compatível com o ChatGPT e disponibilize o arquivo `SKILL.md` como instrução operacional principal. Consulte a documentação da plataforma correspondente, pois o formato de instalação pode variar.
+Adicione o conteúdo de `SKILL.md` às instruções de um GPT personalizado ou ao ambiente de Skills compatível. O GitHub funciona como armazenamento e versionamento do projeto.
 
 ## Contribuição
 
-Faça um fork, crie uma branch, proponha alterações na documentação ou no fluxo, teste com referências não sensíveis e abra um pull request. Não inclua imagens pessoais de escrita sem autorização.
+Faça um fork, crie uma branch, teste com dados autorizados e abra um pull request. Não publique amostras pessoais de escrita sem autorização.
 
 ## Licença
 
-Este projeto é distribuído sob a licença MIT.
+MIT.
